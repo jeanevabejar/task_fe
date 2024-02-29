@@ -21,7 +21,7 @@ export const createCategory = async (categoryName) => {
 
 export const getCategory = async () => {
     try {
-      const response = await axios.post(`${API_URL}/categories`, {
+      const response = await axios.get(`${API_URL}/categories`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

@@ -4,11 +4,11 @@ import Cookies from "js-cookie";
 const token = Cookies.get("accessToken"); 
 const API_URL = "http://127.0.0.1:3000";
 
-export const createCategory = async (categoryId, categoryName) => {
+export const createTask = async (categoryId, TaskData) => {
   try {
-    const response = await axios.post(`${API_URL}/categories/${categoryId}/tasks`, {
-      category: { name: categoryName },
-    }, {
+    const response = await axios.post(`${API_URL}/categories/${categoryId}/tasks`, 
+       TaskData,
+     {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -19,7 +19,7 @@ export const createCategory = async (categoryId, categoryName) => {
   }
 };
 
-export const getCategory = async (categoryId) => {
+export const getTask = async (categoryId) => {
     try {
       const response = await axios.post(`${API_URL}/categories/${categoryId}/tasks`, {
         headers: {
@@ -32,7 +32,7 @@ export const getCategory = async (categoryId) => {
     }
   };
 
-export const showCategory = async (categoryId, taskId) => {
+export const showTask = async (categoryId, taskId) => {
   try {   
     const response = await axios.get(`${API_URL}/categories/${categoryId}/tasks/${taskId}`, {
       headers: {
@@ -45,11 +45,11 @@ export const showCategory = async (categoryId, taskId) => {
   }
 };
 
-export const updateCategory = async (categoryId, categoryData, taskId) => {
+export const updateTask = async (categoryId, taskData, taskId) => {
   try { 
-    const response = await axios.put(`${API_URL}/categories/${categoryId}/tasks/${taskId}`, {
-      category: categoryData,
-    }, {
+    const response = await axios.put(`${API_URL}/categories/${categoryId}/tasks/${taskId}`, 
+      taskData,
+   {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -60,7 +60,7 @@ export const updateCategory = async (categoryId, categoryData, taskId) => {
   }
 };
 
-export const deleteCategory = async (categoryId, taskId) => {
+export const deleteTask = async (categoryId, taskId) => {
   try {
     const response = await axios.delete(`${API_URL}/categories/${categoryId}/tasks/${taskId}`, {
       headers: {
