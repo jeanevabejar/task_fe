@@ -1,47 +1,14 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { login } from "../Utils/Authservice";
+import React from "react";
+import LoginForm from "../Components/LoginForm";
 
 const Signin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-  const nav = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await login(email, password);
-      console.log("Registered user:", response.data);
-      console.log("header user:", response.header);
-      // Redirect or perform other actions after successful login
-      nav("/"); // Example: Redirect to dashboard page
-    } catch (error) {
-      setError(error.message || "An error occurred while signing in.");
-    }
-  };
-
   return (
-    <div>
-      <h1>Signin</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Signin</button>
-      </form>
-      <Link to="/signup">Don't have an account? Sign up</Link>
-      {error && <p>{error}</p>}
-    </div>
+<div className=" layersize display ">
+  <div className=" display w-[50%] h-[50vh] rounded-2xl bg-white drop-shadow-2xl"> 
+     <LoginForm/>
+  </div>
+ 
+</div>
   );
 };
 

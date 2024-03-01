@@ -21,7 +21,7 @@ export const createTask = async (categoryId, TaskData) => {
 
 export const getTask = async (categoryId) => {
     try {
-      const response = await axios.post(`${API_URL}/categories/${categoryId}/tasks`, {
+      const response = await axios.get(`${API_URL}/categories/${categoryId}/tasks`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

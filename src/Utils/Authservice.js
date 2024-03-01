@@ -22,12 +22,13 @@ export const login = async (email, password) => {
   
       const authorizationHeader = response.headers["authorization"];
       const [tokenType, token] = authorizationHeader.split(' ');
-  
+      const user = response.data.status.data.email;
+      Cookies.set("current_user", user);
       Cookies.set("accessToken", token);
   
       return response;
     } catch (error) {
-      throw error;
+      throw error.message;
     }
   };
 
@@ -51,7 +52,7 @@ export const register = async (email, password, passwordConfirmation) => {
 
     return response;
   } catch (error) {
-    throw error;
+    throw error.message;
   }
 };
 
@@ -73,9 +74,10 @@ export const logout = async () => {
     );
 
     Cookies.remove("accessToken");
+    Cookies.remove("current_user");
     return response
   } catch (error) {
-    throw error;
+    throw error.message;
   }
 };
 
