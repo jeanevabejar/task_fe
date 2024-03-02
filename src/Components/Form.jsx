@@ -15,7 +15,7 @@ export const CreateForm = () => {
     try {
       const response = await createCategory(categoryName);
       setCategoryName("");
-      console.log("Category created", response);
+      // console.log("Category created", response);
     } catch (error) {
       setError(error.message);
     }
@@ -35,7 +35,7 @@ export const CreateForm = () => {
           value={categoryName}
           onChange={handleCategoryNameChange}
           required
-          className="p-2 w-full h-[4vh] truncate border-2 rounded-md"
+          className="p-2 w-full h-[4vh] truncate border-2 rounded-md outline-none"
         />
 
         <button
@@ -75,7 +75,7 @@ export const CreateTask = () => {
       const categoriesData = await getCategory();
       // Log fetched categories to check if data is received
       setCategories(categoriesData);
-      console.log(categoriesData);
+      // console.log(categoriesData);
     } catch (error) {
       setError(error.message);
     }
@@ -129,7 +129,7 @@ export const CreateTask = () => {
           onChange={handleTaskInputChange}
           placeholder="Task Title"
           required
-          className="p-2 w-full h-[4vh] truncate border-2 rounded-md"
+          className="p-2 w-full h-[4vh] truncate border-2 rounded-md outline-none"
         />
 
         <textarea
@@ -139,7 +139,7 @@ export const CreateTask = () => {
           value={taskData.description}
           onChange={handleTaskInputChange}
           required
-          className="p-2 w-full h-[4vh] truncate border-2 rounded-md"
+          className="p-2 w-full h-[4vh] truncate border-2 rounded-md outline-none"
         />
 
         <button

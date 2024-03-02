@@ -31,5 +31,22 @@
   .btnstyle{
     @apply shadow-md border-2 rounded-md hover:shadow-inner hover:border-4
   }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 1vh; 
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #4f4f4f; 
+    border-radius: 2px; 
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: #ccc; 
+    border-radius: 5px; 
+  }
+
+
  
 }

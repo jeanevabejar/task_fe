@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getCategory, showCategory } from "../Utils/Categoryservice";
 import { getTask, showTask } from "../Utils/Taskservice";
+import UpdateTask from "./UpdateTask";
 
 const CategoryTask = () => {
-  const [categoryIds, setCategoryIds] = useState([]);
   const [categoryData, setCategoryData] = useState();
   const [taskData, setTaskData] = useState();
   const categoryResponses = [];
@@ -13,8 +13,9 @@ const CategoryTask = () => {
     try {
       const response = await getCategory();
       const ids = response.map((item) => item.id);
-      setCategoryIds(ids);
-      await showCategories(ids);
+
+      showCategories(ids);
+      getTasks(ids);
     } catch (error) {
       console.log(error.message);
     }
@@ -25,22 +26,18 @@ const CategoryTask = () => {
       for (const categoryId of ids) {
         const response = await showCategory(categoryId);
         categoryResponses.push(response);
-        // console.log("Category", categoryResponses);
-        // console.log("Category1", categoryData);
-        // console.log("Category show", response);
       }
       setCategoryData(categoryResponses);
     } catch (error) {
       console.log(error.message);
     }
   };
-  const getTasks = async () => {
+  const getTasks = async (ids) => {
     try {
-      for (const categoryId of categoryIds) {
+      for (const categoryId of ids) {
         const response = await getTask(categoryId);
         const ids = response.map((item) => item.id);
-        await showTasks(ids, categoryId);
-        // console.log("task get", response);
+        showTasks(ids, categoryId);
       }
     } catch (error) {
       console.log(error.message);
@@ -50,12 +47,9 @@ const CategoryTask = () => {
   const showTasks = async (ids, categoryId) => {
     try {
       for (const taskId of ids) {
+        console.log("idc", categoryId);
         const response = await showTask(categoryId, taskId);
         taskResponses.push(response);
-        // console.log("task show", response);
-        // console.log(categoryId);
-        // console.log("taskData", taskResponses);
-        // console.log("taskData1", taskData);
       }
       setTaskData(taskResponses);
     } catch (error) {
@@ -66,22 +60,54 @@ const CategoryTask = () => {
   useEffect(() => {
     getTasks();
     getCategorys();
-    
   }, []);
 
   return (
-    <div>
+    <>
+    <div className="display flex-col flex-wrap w-full h-[90vh] gap-6  p-5 custom-scrollbar">
       {categoryData ? (
-        categoryData.map((category) => <h1 key={category.id}>{category.name}</h1>)
-      ) : (
-        <p>No category data available</p>
-      )}
-      {taskData ? (
-        taskData.map((task) => <h1 key={task.id}>{task.title}</h1>)
+        categoryData.map((category, index) => (
+          <div
+            key={category.id}
+            className="display flex-col gap-4 border-2 min-w-[50%] min-h-[30vh] max-w-[50%] truncate"
+          >
+            <h1 className="w-full min-h-[5vh] text-left p-4 border-dashed border-b-2 border-slate-950">
+              {category.name}
+            </h1>
+            <div key={index} className=" w-full p-4 min-h-[25vh] gap-3 ">
+              {taskData ? (
+                taskData
+                  .filter((task) => task.category_id === category.id)
+                  .map((task, index) => (
+                    <>
+                      <div
+                        key={task.id}
+                        className="  w-full flex flex-row gap-4"
+                      >
+                        <h1>Title:</h1>
+                        <h1 className="capitalize">{task.title}</h1>
+                      </div>
+                      <div
+                        key={index}
+                        className="w-full flex flex-row gap-4 border-dashed border-b-2 border-slate-950 pb-1"
+                      >
+                        <h1>Description:</h1>
+                        <p className="capitalize">{task.description}</p>
+                      </div>
+                    </>
+                  ))
+              ) : (
+                <p>No task data available</p>
+              )}
+            </div>
+          </div>
+        ))
       ) : (
         <p>No category data available</p>
       )}
     </div>
+    {/* <UpdateTask/>  #for modal later*/}
+    </>
   );
 };
 

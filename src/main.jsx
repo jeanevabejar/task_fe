@@ -9,9 +9,9 @@ import App from "./App";
 import Signup from "./Pages/Signup";
 import Signin from "./Pages/Signin";
 import ProtectedRoute from "./Components/ProtectedRoute";
-import { CreateForm } from "./Components/Form";
+
 import Dashboard from "./Pages/Dashboard"
-import CategoryTask from "./Components/CategoryTask";
+
 
 
 const router = createBrowserRouter([
@@ -21,20 +21,15 @@ const router = createBrowserRouter([
     loader: ProtectedRoute,
   },
   {
-    path: "/addcategory",
-    element: <CreateForm />,
-    loader: ProtectedRoute,
-  },
-  {
     path: "/todolist",
     element: <Dashboard />,
     loader: ProtectedRoute,
   },
-  {
-    path: "/tester",
-    element: <CategoryTask />,
-    loader: ProtectedRoute,
-  },
+  // {
+  //   path: "/tester",
+  //   element: <CategoryTask />,
+  //   loader: ProtectedRoute,
+  // },
 
   {
     path: "/signup",
