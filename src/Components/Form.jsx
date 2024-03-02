@@ -51,8 +51,7 @@ export const CreateForm = () => {
 
 export const CreateTask = () => {
   const [taskData, setTaskData] = useState({
-    title: "",
-    description: "",
+    todo: "",
   });
   const [categories, setCategories] = useState([]);
   const [categoryId, setCategoryId] = useState("");
@@ -125,19 +124,9 @@ export const CreateTask = () => {
         <input
           type="text"
           name="title"
-          value={taskData.title}
+          value={taskData.todo}
           onChange={handleTaskInputChange}
           placeholder="Task Title"
-          required
-          className="p-2 w-full h-[4vh] truncate border-2 rounded-md outline-none"
-        />
-
-        <textarea
-          type="text"
-          name="description"
-          placeholder="Task Description"
-          value={taskData.description}
-          onChange={handleTaskInputChange}
           required
           className="p-2 w-full h-[4vh] truncate border-2 rounded-md outline-none"
         />
