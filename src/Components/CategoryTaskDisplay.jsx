@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TaskCheckBox from "./TaskCheckBox";
 import DeleteTask from "./DeleteTask";
+import DeleteCategory from "./DeleteCategory";
 
 const CategoryTaskDisplay = ({
   selectedCategory,
@@ -14,7 +15,8 @@ const CategoryTaskDisplay = ({
   categoryData,
   taskData,
   handleCheckboxChange,
-  deletingTask
+  deletingTask,
+  deletingCategory,
 }) => {
   const [editingCategory, setEditingCategory] = useState(null); // State to manage editing category
   const [editingTask, setEditingTask] = useState(null); // State to manage editing task
@@ -58,6 +60,10 @@ const CategoryTaskDisplay = ({
                     >
                       edit
                     </button>
+                    <DeleteCategory
+                      categoryId={category.id}
+                      deletingCategory={deletingCategory}
+                    />
                   </>
                 )}
               </div>
@@ -119,9 +125,9 @@ const CategoryTaskDisplay = ({
                                 handleCheckboxChange={handleCheckboxChange}
                               />
                               <DeleteTask
-                             taskId={task.id}
-                             categoryId={category.id}
-                             deletingTask={deletingTask}
+                                taskId={task.id}
+                                categoryId={category.id}
+                                deletingTask={deletingTask}
                               />
                             </>
                           )}

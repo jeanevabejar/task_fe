@@ -3,6 +3,7 @@ import {
   getCategory,
   showCategory,
   updateCategory,
+  deleteCategory
 } from "../Utils/Categoryservice";
 import { getTask, updateTask, deleteTask } from "../Utils/Taskservice";
 import CategoryTaskDisplay from "./CategoryTaskDisplay";
@@ -167,26 +168,26 @@ const CategoryTask = () => {
 
   const deletingTask = async (categoryId, taskId) => {
     try {
-      const response = await deleteTask(categoryId, taskId);
-      console.log(response);
+       await deleteTask(categoryId, taskId);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const deletingCategory = async (categoryId) => {
+    try {
+      await deleteCategory(categoryId);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
-    const fetchData = () => {
+    const interval = setInterval(() => {
       getTasks();
       getCategorys();
-    };
+    }, 2500);
 
-    fetchData(); 
-
-    const interval = setInterval(() => {
-      fetchData(); 
-    }, 2500); 
-
-    
     return () => clearInterval(interval);
   }, []);
 
@@ -205,6 +206,7 @@ const CategoryTask = () => {
         taskData={taskData}
         handleCheckboxChange={handleCheckboxChange}
         deletingTask={deletingTask}
+        deletingCategory={deletingCategory}
       />
     </>
   );
