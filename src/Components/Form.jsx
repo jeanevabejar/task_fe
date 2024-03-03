@@ -60,7 +60,7 @@ export const CreateTask = () => {
   const handleTaskInputChange = (event) => {
     setTaskData({
       ...taskData,
-      [event.target.name]: event.target.value,
+      todo: event.target.value,
     });
   };
 
@@ -90,12 +90,10 @@ export const CreateTask = () => {
       const response = await createTask(categoryId, taskData); // You need to provide categoryId here
       console.log(taskData);
       console.log(categoryId);
-      setTaskData({ title: "", description: "" });
+      setTaskData({ todo: ""});
       console.log("Task created", response);
     } catch (error) {
       setError(error.message);
-      console.log(taskData);
-      console.log(categoryId);
     }
   };
 
