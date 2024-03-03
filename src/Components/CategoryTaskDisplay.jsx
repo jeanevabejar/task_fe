@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import TaskCheckBox from "./TaskCheckBox";
+import DeleteTask from "./DeleteTask";
 
 const CategoryTaskDisplay = ({
   selectedCategory,
@@ -11,6 +13,8 @@ const CategoryTaskDisplay = ({
   updateCategories,
   categoryData,
   taskData,
+  handleCheckboxChange,
+  deletingTask
 }) => {
   const [editingCategory, setEditingCategory] = useState(null); // State to manage editing category
   const [editingTask, setEditingTask] = useState(null); // State to manage editing task
@@ -24,11 +28,12 @@ const CategoryTaskDisplay = ({
               className="display flex-col gap-4 border-2 min-w-[50%] min-h-[30vh] max-w-[50%] flex-wrap text-wrap"
             >
               <div className=" flex-row flex w-full min-h-[5vh] text-left p-4 border-dashed border-b-2 border-slate-950 gap-4">
-                {editingCategory === category.id && selectedCategory === category.id ? (
+                {editingCategory === category.id &&
+                selectedCategory === category.id ? (
                   <>
                     <input
                       type="text"
-                     placeholder={category.name}
+                      placeholder={category.name}
                       onChange={(e) => handleCategoryChange(e)}
                     />
                     <button
@@ -57,7 +62,10 @@ const CategoryTaskDisplay = ({
                 )}
               </div>
 
-              <div key={index} className=" w-full p-4 min-h-[25vh] gap-3 ">
+              <div
+                key={index}
+                className="flex flex-col w-full p-4 min-h-[25vh] gap-6 overflow-auto "
+              >
                 {taskData ? (
                   taskData
                     .filter((task) => task.category_id === category.id)
@@ -65,9 +73,10 @@ const CategoryTaskDisplay = ({
                       <>
                         <div
                           key={task.id}
-                          className="  w-full flex flex-row gap-4"
+                          className="  w-full flex flex-row gap-5"
                         >
-                          {editingTask === task.id || selectedTask === task.id ? (
+                          {editingTask === task.id ||
+                          selectedTask === task.id ? (
                             <>
                               <input
                                 type="text"
@@ -86,7 +95,14 @@ const CategoryTaskDisplay = ({
                             </>
                           ) : (
                             <>
-                              <h1 className="capitalize">{task.todo}</h1>
+                              {task.completed === true ? (
+                                <h1 className="line-through italic capitalize">
+                                  {task.todo}
+                                </h1>
+                              ) : (
+                                <h1 className="capitalize">{task.todo}</h1>
+                              )}
+
                               <button
                                 className="btnstyle"
                                 onClick={() => {
@@ -96,6 +112,17 @@ const CategoryTaskDisplay = ({
                               >
                                 Edit
                               </button>
+                              <TaskCheckBox
+                                task={task}
+                                taskId={task.id}
+                                categoryId={category.id}
+                                handleCheckboxChange={handleCheckboxChange}
+                              />
+                              <DeleteTask
+                             taskId={task.id}
+                             categoryId={category.id}
+                             deletingTask={deletingTask}
+                              />
                             </>
                           )}
                         </div>

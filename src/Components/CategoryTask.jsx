@@ -4,12 +4,15 @@ import {
   showCategory,
   updateCategory,
 } from "../Utils/Categoryservice";
-import { getTask, showTask, updateTask } from "../Utils/Taskservice";
+import { getTask, updateTask, deleteTask } from "../Utils/Taskservice";
 import CategoryTaskDisplay from "./CategoryTaskDisplay";
 
 const CategoryTask = () => {
   const [taskInput, setTaskInput] = useState({
     todo: "",
+  });
+  const [taskCompleted, setTaskCompleted] = useState({
+    completed: false,
   });
 
   const [categoryInput, setCategoryInput] = useState({
@@ -20,8 +23,6 @@ const CategoryTask = () => {
   const [taskData, setTaskData] = useState();
   const [selectedTask, setSelectedTask] = useState();
   const [selectedCategory, setSelectedCategory] = useState();
-
-
 
   const getCategorys = async () => {
     try {
@@ -41,7 +42,7 @@ const CategoryTask = () => {
       for (const categoryId of ids) {
         const response = await showCategory(categoryId);
         categoryResponses.push(response);
-        console.log(response)
+        // console.log(response);
       }
       setCategoryData(categoryResponses);
     } catch (error) {
@@ -62,12 +63,6 @@ const CategoryTask = () => {
     }
   };
 
-
-  useEffect(() => {
-    getTasks();
-    getCategorys();
-  }, []);
-
   const handleEditTask = (categoryId, taskId) => {
     setSelectedCategory(categoryId);
     setSelectedTask(taskId);
@@ -87,10 +82,35 @@ const CategoryTask = () => {
     console.log(taskInput);
   };
 
+  const handleCheckboxChange = (taskId, categoryId) => {
+    setTaskCompleted({
+      completed: true,
+    });
+    console.log(taskCompleted);
+    console.log(taskId);
+    console.log(categoryId);
+    updateTaskStatus(taskId, categoryId);
+  };
+
+  const updateTaskStatus = async (taskId, categoryId) => {
+    try {
+      const response = await updateTask(categoryId, taskCompleted, taskId);
+      const updatedTaskData = taskData.map((task) => {
+        if (task.id === taskId) {
+          return response;
+        }
+        return task;
+      });
+      setTaskData(updatedTaskData);
+      console.log(updatedTaskData);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   const updateTasks = async () => {
     try {
       if (taskInput.todo.trim() !== "") {
-        // If taskInput is not empty, proceed with the update
         const response = await updateTask(
           selectedCategory,
           taskInput,
@@ -98,16 +118,14 @@ const CategoryTask = () => {
         );
         const updatedTaskData = taskData.map((task) => {
           if (task.id === selectedTask) {
-            return response; // Assuming response contains the updated task object
+            return response;
           }
           return task;
         });
         setTaskData(updatedTaskData);
         setSelectedCategory("");
         setSelectedTask("");
-        return response; // Return the response if needed
       } else {
-        // If taskInput is empty, do nothing
         setSelectedCategory("");
         setSelectedTask("");
         console.log("Task input is empty. No update performed.");
@@ -128,7 +146,6 @@ const CategoryTask = () => {
   const updateCategories = async () => {
     try {
       if (categoryInput.name.trim() !== "") {
-        // If categoryInput is not empty, proceed with the update
         const response = await updateCategory(selectedCategory, categoryInput);
         const updatedCategoryData = categoryData.map((category) => {
           if (category.id === selectedCategory) {
@@ -138,7 +155,6 @@ const CategoryTask = () => {
         });
         setCategoryData(updatedCategoryData);
         setSelectedCategory("");
-        return response; // Return the response if needed
       } else {
         // If categoryInput is empty, do nothing
         setSelectedCategory("");
@@ -148,7 +164,31 @@ const CategoryTask = () => {
       console.log(error.message);
     }
   };
-  
+
+  const deletingTask = async (categoryId, taskId) => {
+    try {
+      const response = await deleteTask(categoryId, taskId);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = () => {
+      getTasks();
+      getCategorys();
+    };
+
+    fetchData(); 
+
+    const interval = setInterval(() => {
+      fetchData(); 
+    }, 2500); 
+
+    
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -163,6 +203,8 @@ const CategoryTask = () => {
         updateCategories={updateCategories}
         categoryData={categoryData}
         taskData={taskData}
+        handleCheckboxChange={handleCheckboxChange}
+        deletingTask={deletingTask}
       />
     </>
   );

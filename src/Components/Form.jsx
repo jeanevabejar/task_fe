@@ -15,7 +15,8 @@ export const CreateForm = () => {
     try {
       const response = await createCategory(categoryName);
       setCategoryName("");
-      // console.log("Category created", response);
+      console.log("Category created", response);
+      console.log(categoryName)
     } catch (error) {
       setError(error.message);
     }
@@ -33,7 +34,7 @@ export const CreateForm = () => {
           type="text"
           placeholder="Category Name"
           value={categoryName}
-          onChange={handleCategoryNameChange}
+          onChange={(e)=>handleCategoryNameChange(e)}
           required
           className="p-2 w-full h-[4vh] truncate border-2 rounded-md outline-none"
         />
