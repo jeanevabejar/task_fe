@@ -23,7 +23,7 @@ const [username] = email.split("@")
     <div className=' display flex-col gap-28'>
       <h1 className='capitalize text-8xl font-bold'>Hello, {username}</h1>
           <button onClick={handleLogout} className='btnstyle w-[10vw] h-[5vh] font-semibold'>logout</button>
-          <button onClick={ ()=> nav("todolist")} className='btnstyle w-[15vw] h-[5vh] font-semibold'>Dashboard</button>
+          <button onClick={ ()=> nav("dashboard")} className='btnstyle w-[15vw] h-[5vh] font-semibold'>Dashboard</button>
     </div>
   );
 }

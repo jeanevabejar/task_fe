@@ -1,10 +1,20 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { createTask } from "../Utils/Taskservice";
 import { createCategory, getCategory } from "../Utils/Categoryservice";
 
-export const CreateForm = () => {
+export const CreateCategories = () => {
   const [categoryName, setCategoryName] = useState("");
   const [error, setError] = useState(null);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    // Logic to fetch categories only when the component is mounted on /dashboard/category path
+    if (location.pathname === "/dashboard/category") {
+      handleCategorySelect();
+    }
+  }, [location.pathname]);
 
   const handleCategoryNameChange = (event) => {
     setCategoryName(event.target.value);
@@ -23,12 +33,12 @@ export const CreateForm = () => {
   };
 
   return (
-    <div className="display flex-col p-2 w-full h-[40vh] border-2">
+    <div className="display absolute flex-col p-2 w-[40%] h-[50vh] border-2  bg-white top-[15%]">
       <h2>Create Category</h2>
       {error && <p>Error: {error}</p>}
       <form
         onSubmit={handleCategorySubmit}
-        className=" display flex-col w-full h-[20vh] gap-10"
+        className=" display flex-col w-[70%] h-[20vh] gap-10"
       >
         <input
           type="text"
@@ -57,6 +67,8 @@ export const CreateTask = () => {
   const [categories, setCategories] = useState([]);
   const [categoryId, setCategoryId] = useState("");
   const [error, setError] = useState(null);
+
+
 
   const handleTaskInputChange = (event) => {
     setTaskData({
@@ -99,12 +111,12 @@ export const CreateTask = () => {
   };
 
   return (
-    <div className="display flex-col border-2 p-2 w-full h-[40vh]">
+    <div className="display absolute flex-col p-2 w-[40%] h-[50vh] border-2  bg-white top-[15%]">
       <h2>Create New Task</h2>
    
       <form
         onSubmit={handleTaskSubmit}
-        className=" display flex-col w-full h-[30vh] gap-4"
+        className=" display flex-col w-[70%] h-[30vh] gap-4"
       >
         <select
           value={taskData.categoryId}

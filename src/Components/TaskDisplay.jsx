@@ -38,34 +38,42 @@ const TaskDisplay = () => {
     getTasks();
   }, []);
 
-  const today = new Date().toISOString().split("T")[0]; // Get today's date in 'YYYY-MM-DD' format
-
-  // Filter tasks created today
+  const today = new Date().toISOString().split("T")[0]; 
   const filteredTasks = taskData.filter((task) => {
-    const taskDate = new Date(task.created_at).toISOString().split("T")[0]; // Extract date from created_at
+    const taskDate = new Date(task.created_at).toISOString().split("T")[0]; 
     return taskDate === today;
   });
+  
+  const sortedTasks = filteredTasks.sort((a, b) => {
+    
+    const dateA = new Date(a.created_at);
+    const dateB = new Date(b.created_at);
+    
+    return dateB - dateA; 
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getTasks();
+      getCategorys();
+    }, 2500);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
-      <div className="border-2 w-full display flex-col">
-        {filteredTasks.length > 0 ? (
-          filteredTasks.map((task) => (
+      <div className="border-2 w-full h-[85vh] display flex-col gap-3">
+        <h1 className="font-bold w-full text-center text-[5vh]">Today's Task</h1>
+        {sortedTasks ? (
+          sortedTasks.map((task) => (
             <div
               className="border-2 w-[90%] flex flex-row justify-between"
               key={task.id}
             >
-              {categoryData ? (
-                categoryData
-                  .filter((category) => category.id === task.category_id)
-                  .map((category) => (
-                    <h1 key={category.id}> {category.name}</h1>
-                  ))
-              ) : (
-                <h1>No data</h1>
-              )}
               <h1>{task.todo}</h1>
               {/* <p>Date: {new Date(task.created_at).toLocaleDateString()}</p>  */}
+              <h1>{task.completed === true ? "done" : "notdone"}</h1>
               <p>
                 {new Date(task.created_at).toLocaleDateString("en-US", {
                   weekday: "long",

@@ -1,19 +1,13 @@
 import * as React from "react";
-import './index.css';
+import "./index.css";
 import { createRoot } from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import Signup from "./Pages/Signup";
 import Signin from "./Pages/Signin";
 import ProtectedRoute from "./Components/ProtectedRoute";
 
-import Dashboard from "./Pages/Dashboard"
-
-
-
+import Dashboard from "./Pages/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -22,22 +16,17 @@ const router = createBrowserRouter([
     loader: ProtectedRoute,
   },
   {
-    path: "/todolist",
+    path: "dashboard",
     element: <Dashboard />,
     loader: ProtectedRoute,
   },
-  // {
-  //   path: "/tester",
-  //   element: <UpdateTaskModal />,
-  //   loader: ProtectedRoute,
-  // },
 
   {
-    path: "/signup",
+    path: "signup",
     element: <Signup />,
   },
   {
-    path: "/signin",
+    path: "signin",
     element: <Signin />,
   },
 ]);
