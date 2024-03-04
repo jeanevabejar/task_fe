@@ -13,14 +13,15 @@ const Dashboard = () => {
 
 
   return (
-    <div className="border-4 layersize flex justify-evenly items-center relative flex-row bg-bg1">
-      <div className="h-[90vh] w-[22%] display ">
+    <div className="resetsize display  ">
+      <div className=" border layersize flex justify-evenly items-center relative flex-row">
+      <div className="h-[90vh] w-[22%] display style ">
         <TaskDisplay />
       </div>
       <div className="h-[89vh] w-[44%] display overflow-y-hidden custom-scrollbar ">
         <CategoryTask />
       </div>
-      <div className="h-[90vh] w-[22%] display flex-col justify-evenly flex-wrap text-ellipsis overflow-hidden  border-2 bg-bg4 bg-center bg-cover bg-no-repeat">
+      <div className="h-[90vh] w-[22%] display flex-col justify-evenly flex-wrap text-ellipsis overflow-hidden  border-2 bg-white">
         <h1 className="font-extrabold text-[5rem]">{username}</h1>
         <Logout />
         
@@ -30,6 +31,8 @@ const Dashboard = () => {
       ) : null}
       {location.pathname === "/dashboard/task" ? <CreateTask /> : null}
     </div>
+    </div>
+    
   );
 };
 

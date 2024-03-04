@@ -22,8 +22,8 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex flex-col text-center gap-8">
-      <h1>Get Started</h1>
+    <div className="flex flex-col text-center gap-8 w-[50%]">
+      <h1 className="text-[2rem] ">Get Started</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 display w-[100%] h-[20vh]">
         <input 
           type="email"
@@ -39,9 +39,9 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="authinput"
         />
-        <button type="submit" className="btnstyle  w-[70%] h-[4vh]">Signin</button>
+        <button type="submit" className="btnstyle text-[1.2rem] w-[70%] h-[4vh]">Signin</button>
       </form>
-      <Link to="/signup">Don't have an account? Sign up</Link>
+      <Link to="/signup" className="text-[1.2rem] hover:italic">Don't have an account? Sign up</Link>
       {error && <p>{error}</p>}
     </div>
   );

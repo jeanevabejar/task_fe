@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,7 +8,8 @@
    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Amatic SC';
+    font-family: "Kalam", cursive;
+    
   }
   .display {
     display: flex;
@@ -27,8 +28,11 @@
     min-height: 90vh;
     max-height: 90vh;
   }
+  .glassmorph{
+    @apply bg-white bg-opacity-10 backdrop-blur-lg backdrop-filter rounded-xl p-10 shadow-lg
+  }
   .authinput{
-   @apply shadow-inner border outline-none rounded-md w-[100%] h-[4vh] p-1
+   @apply shadow-inner border outline-none rounded-md w-[100%] h-[4vh] p-1 font-open-sans
   }
   .btnstyle{
     @apply shadow-md border-2 rounded-md hover:shadow-inner hover:border-4 bg-white

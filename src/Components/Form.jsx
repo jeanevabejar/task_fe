@@ -25,7 +25,7 @@ export const CreateCategories = () => {
   };
 
   return (
-    <div className="display absolute flex-col p-2 w-[40%] h-[50vh] border-2  bg-white top-[15%]">
+    <div className="display absolute flex-col p-2 w-[40%] h-[50vh] border-2  bg-white top-[15%] font-bold text-[1.5rem] bg-bg5 bg-cover bg-no-repeat bg-center">
       <h2>Create Category</h2>
       {error && <p>Error: {error}</p>}
       <form
@@ -107,12 +107,12 @@ export const CreateTask = () => {
   };
 
   return (
-    <div className="display absolute flex-col p-2 w-[40%] h-[50vh] border-2  bg-white top-[15%]">
+    <div className="display absolute flex-col p-2 w-[40%] h-[50vh] border-2  bg-white top-[15%]  ">
       <h2>Create New Task</h2>
 
       <form
         onSubmit={handleTaskSubmit}
-        className=" display flex-col w-[70%] h-[30vh] gap-4"
+        className=" display flex-col w-[70%] h-[30vh] gap-4 "
       >
         <select
           value={taskData.categoryId}

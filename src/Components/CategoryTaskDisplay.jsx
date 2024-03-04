@@ -23,12 +23,12 @@ const CategoryTaskDisplay = ({
   const [editingTask, setEditingTask] = useState(null); // State to manage editing task
   return (
     <>
-      <div className="display flex-col flex-wrap w-full h-[90vh] gap-6  p-5 custom-scrollbar">
+      <div className="display flex-col flex-wrap w-full h-[90vh] gap-6  p-5 custom-scrollbar ">
         {categoryData ? (
           categoryData.map((category, index) => (
             <div
               key={category.id}
-              className="display flex-col gap-4 border-2 min-w-[50%] min-h-[30vh] max-w-[50%] flex-wrap text-wrap bg-violet-100 bg-center bg-cover bg-no-repeat "
+              className="display flex-col gap-4 border-2 min-w-[50%] min-h-[30vh] max-w-[50%] flex-wrap text-wrap bg-white bg-center bg-cover bg-no-repeat "
             >
               <div className=" flex-row flex w-full min-h-[5vh] text-left p-4 border-dashed border-b-2 border-slate-950 gap-4 justify-between">
                 {editingCategory === category.id &&
@@ -104,10 +104,18 @@ const CategoryTaskDisplay = ({
                             </>
                           ) : (
                             <>
+                                <TaskCheckBox
+                                  task={task}
+                                  taskId={task.id}
+                                  categoryId={category.id}
+                                  handleCheckboxChange={handleCheckboxChange}
+                                />
                               {task.completed === true ? (
-                                <h1 className="line-through italic capitalize text-[1.3rem] ">
-                                  {task.todo}
-                                </h1>
+                                <>
+                                  <h1 className="line-through italic capitalize text-[1.3rem] ">
+                                    {task.todo}
+                                  </h1>
+                                </>
                               ) : (
                                 <h1 className="capitalize font-bold text-[1.3rem]">
                                   {task.todo}
@@ -122,12 +130,7 @@ const CategoryTaskDisplay = ({
                                 >
                                   <VscEdit className="size-[1.5rem]" />
                                 </button>
-                                <TaskCheckBox
-                                  task={task}
-                                  taskId={task.id}
-                                  categoryId={category.id}
-                                  handleCheckboxChange={handleCheckboxChange}
-                                />
+
                                 <DeleteTask
                                   taskId={task.id}
                                   categoryId={category.id}

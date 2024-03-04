@@ -59,8 +59,8 @@ const TaskDisplay = () => {
 
   return (
     <>
-      <div className="border-2 w-full h-[90vh] display flex-col bg-bg3 bg-center bg-no-repeat bg-cover justify-evenly">
-        <h1 className="font-bold w-full text-center text-[8vh] h-[20vh] display">
+      <div className=" w-full h-[90vh] display flex-col gap-4 rounded-xl border">
+        <h1 className="font-bold w-full text-center text-[8vh] h-[20vh] display ">
           Today's List
         </h1>
         <div className="w-full flex justify-evenly">
@@ -72,7 +72,7 @@ const TaskDisplay = () => {
           </button>
           <button
             onClick={() => nav("task")}
-            className="btnstyle w-[30%] h-[5vh] font-extrabold text-[1.5rem] display"
+            className="btnstyle w-[30%] h-[5vh] font-extrabold text-[1.5rem] display "
           >
            <IoMdAdd />task
           </button>
@@ -86,7 +86,7 @@ const TaskDisplay = () => {
                   className="border-2 w-full flex flex-row justify-between p-2"
                   key={task.id}
                 >
-                  <h1 className="font-bold text-[1.3rem]">{task.todo}</h1>
+                  <h1 className="font-bold text-[1.3rem] ">{task.todo}</h1>
                   <h1 className="text-[1.2rem]">
                     {task.completed === true ? "done" : "to-do"}
                   </h1>
