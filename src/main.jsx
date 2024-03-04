@@ -8,6 +8,7 @@ import Signin from "./Pages/Signin";
 import ProtectedRoute from "./Components/ProtectedRoute";
 
 import Dashboard from "./Pages/Dashboard";
+import { CreateCategories, CreateTask } from "./Components/Form";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,18 @@ const router = createBrowserRouter([
     path: "dashboard",
     element: <Dashboard />,
     loader: ProtectedRoute,
+    children:[
+      {
+        path: "category",
+        element: <CreateCategories/>,
+        loader: ProtectedRoute,
+      },
+      {
+        path: "task",
+        element: <CreateTask/>,
+        loader: ProtectedRoute,
+      }
+    ]
   },
 
   {

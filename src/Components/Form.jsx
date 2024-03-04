@@ -1,20 +1,12 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { createTask } from "../Utils/Taskservice";
 import { createCategory, getCategory } from "../Utils/Categoryservice";
+import { useNavigate } from "react-router-dom";
 
 export const CreateCategories = () => {
   const [categoryName, setCategoryName] = useState("");
   const [error, setError] = useState(null);
-
-  const location = useLocation();
-
-  useEffect(() => {
-    // Logic to fetch categories only when the component is mounted on /dashboard/category path
-    if (location.pathname === "/dashboard/category") {
-      handleCategorySelect();
-    }
-  }, [location.pathname]);
+  const nav = useNavigate();
 
   const handleCategoryNameChange = (event) => {
     setCategoryName(event.target.value);
@@ -26,7 +18,7 @@ export const CreateCategories = () => {
       const response = await createCategory(categoryName);
       setCategoryName("");
       console.log("Category created", response);
-      console.log(categoryName)
+      console.log(categoryName);
     } catch (error) {
       setError(error.message);
     }
@@ -44,8 +36,7 @@ export const CreateCategories = () => {
           type="text"
           placeholder="Category Name"
           value={categoryName}
-          onChange={(e)=>handleCategoryNameChange(e)}
-          required
+          onChange={(e) => handleCategoryNameChange(e)}
           className="p-2 w-full h-[4vh] truncate border-2 rounded-md outline-none"
         />
 
@@ -54,6 +45,12 @@ export const CreateCategories = () => {
           className="btnstyle w-[50%] h-[4vh] text-base truncate"
         >
           Add Category
+        </button>
+        <button
+          onClick={() => nav("/dashboard")}
+          className="btnstyle w-[50%] h-[4vh] text-base truncate"
+        >
+          Cancel
         </button>
       </form>
     </div>
@@ -67,8 +64,7 @@ export const CreateTask = () => {
   const [categories, setCategories] = useState([]);
   const [categoryId, setCategoryId] = useState("");
   const [error, setError] = useState(null);
-
-
+  const nav = useNavigate();
 
   const handleTaskInputChange = (event) => {
     setTaskData({
@@ -103,7 +99,7 @@ export const CreateTask = () => {
       const response = await createTask(categoryId, taskData); // You need to provide categoryId here
       console.log(taskData);
       console.log(categoryId);
-      setTaskData({ todo: ""});
+      setTaskData({ todo: "" });
       console.log("Task created", response);
     } catch (error) {
       setError(error.message);
@@ -113,7 +109,7 @@ export const CreateTask = () => {
   return (
     <div className="display absolute flex-col p-2 w-[40%] h-[50vh] border-2  bg-white top-[15%]">
       <h2>Create New Task</h2>
-   
+
       <form
         onSubmit={handleTaskSubmit}
         className=" display flex-col w-[70%] h-[30vh] gap-4"
@@ -147,6 +143,12 @@ export const CreateTask = () => {
           className="btnstyle w-[50%] h-[4vh] text-base truncate"
         >
           Create Task
+        </button>
+        <button
+          onClick={() => nav("/dashboard")}
+          className="btnstyle w-[50%] h-[4vh] text-base truncate"
+        >
+          Cancel
         </button>
       </form>
       {error && <p>Error: {error}</p>}

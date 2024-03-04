@@ -3,7 +3,7 @@ import {
   getCategory,
   showCategory,
   updateCategory,
-  deleteCategory
+  deleteCategory,
 } from "../Utils/Categoryservice";
 import { getTask, updateTask, deleteTask } from "../Utils/Taskservice";
 import CategoryTaskDisplay from "./CategoryTaskDisplay";
@@ -24,6 +24,7 @@ const CategoryTask = () => {
   const [taskData, setTaskData] = useState();
   const [selectedTask, setSelectedTask] = useState();
   const [selectedCategory, setSelectedCategory] = useState();
+  const [dataFetched, setDataFetched] = useState(false);
 
   const getCategorys = async () => {
     try {
@@ -31,7 +32,8 @@ const CategoryTask = () => {
       const ids = response.map((item) => item.id);
       showCategories(ids);
       getTasks(ids);
-      // console.log(response)
+      console.log("get", response);
+      setDataFetched(true);
     } catch (error) {
       console.log(error.message);
     }
@@ -59,6 +61,7 @@ const CategoryTask = () => {
       }
       const combinedTasks = [].concat(...taskResponses);
       setTaskData(combinedTasks);
+      setDataFetched(true);
     } catch (error) {
       console.log(error.message);
     }
@@ -67,12 +70,10 @@ const CategoryTask = () => {
   const handleEditTask = (categoryId, taskId) => {
     setSelectedCategory(categoryId);
     setSelectedTask(taskId);
-    console.log(selectedCategory, selectedTask);
   };
 
   const handleEditCategory = (categoryId) => {
     setSelectedCategory(categoryId);
-    console.log("sds", selectedCategory);
   };
 
   const handleTaskChange = (event) => {
@@ -80,16 +81,13 @@ const CategoryTask = () => {
       ...taskInput,
       todo: event.target.value,
     });
-    console.log(taskInput);
   };
 
   const handleCheckboxChange = (taskId, categoryId) => {
     setTaskCompleted({
       completed: true,
     });
-    console.log(taskCompleted);
-    console.log(taskId);
-    console.log(categoryId);
+
     updateTaskStatus(taskId, categoryId);
   };
 
@@ -103,7 +101,6 @@ const CategoryTask = () => {
         return task;
       });
       setTaskData(updatedTaskData);
-      console.log(updatedTaskData);
     } catch (error) {
       console.log(error.message);
     }
@@ -117,6 +114,7 @@ const CategoryTask = () => {
           taskInput,
           selectedTask
         );
+        console.log("updatetask", response);
         const updatedTaskData = taskData.map((task) => {
           if (task.id === selectedTask) {
             return response;
@@ -129,7 +127,6 @@ const CategoryTask = () => {
       } else {
         setSelectedCategory("");
         setSelectedTask("");
-        console.log("Task input is empty. No update performed.");
       }
     } catch (error) {
       console.log(error.message);
@@ -141,13 +138,13 @@ const CategoryTask = () => {
       ...categoryInput,
       name: event.target.value,
     });
-    console.log(categoryInput);
   };
 
   const updateCategories = async () => {
     try {
       if (categoryInput.name.trim() !== "") {
         const response = await updateCategory(selectedCategory, categoryInput);
+        console.log(response);
         const updatedCategoryData = categoryData.map((category) => {
           if (category.id === selectedCategory) {
             return response; // Assuming response contains the updated category object
@@ -159,7 +156,6 @@ const CategoryTask = () => {
       } else {
         // If categoryInput is empty, do nothing
         setSelectedCategory("");
-        console.log("Category input is empty. No update performed.");
       }
     } catch (error) {
       console.log(error.message);
@@ -168,7 +164,9 @@ const CategoryTask = () => {
 
   const deletingTask = async (categoryId, taskId) => {
     try {
-       await deleteTask(categoryId, taskId);
+      const response = await deleteTask(categoryId, taskId);
+      console.log(response);
+      setDataFetched(false);
     } catch (error) {
       console.log(error);
     }
@@ -176,20 +174,20 @@ const CategoryTask = () => {
 
   const deletingCategory = async (categoryId) => {
     try {
-      await deleteCategory(categoryId);
+      const response = await deleteCategory(categoryId);
+      setDataFetched(false);
+      console.log(response);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    if (!dataFetched) {
       getTasks();
       getCategorys();
-    }, 2500);
-
-    return () => clearInterval(interval);
-  }, []);
+    }
+  }, [taskData, categoryData, dataFetched]);
 
   return (
     <>

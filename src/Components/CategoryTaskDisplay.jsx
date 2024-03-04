@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TaskCheckBox from "./TaskCheckBox";
 import DeleteTask from "./DeleteTask";
 import DeleteCategory from "./DeleteCategory";
+import { VscEdit } from "react-icons/vsc";
 
 const CategoryTaskDisplay = ({
   selectedCategory,
@@ -27,43 +28,46 @@ const CategoryTaskDisplay = ({
           categoryData.map((category, index) => (
             <div
               key={category.id}
-              className="display flex-col gap-4 border-2 min-w-[50%] min-h-[30vh] max-w-[50%] flex-wrap text-wrap"
+              className="display flex-col gap-4 border-2 min-w-[50%] min-h-[30vh] max-w-[50%] flex-wrap text-wrap bg-violet-100 bg-center bg-cover bg-no-repeat "
             >
-              <div className=" flex-row flex w-full min-h-[5vh] text-left p-4 border-dashed border-b-2 border-slate-950 gap-4">
+              <div className=" flex-row flex w-full min-h-[5vh] text-left p-4 border-dashed border-b-2 border-slate-950 gap-4 justify-between">
                 {editingCategory === category.id &&
                 selectedCategory === category.id ? (
                   <>
                     <input
+                      className="w-[60%] h-[5vh] p-2 text-[1.5rem]  font-semibold bg-transparent"
                       type="text"
                       placeholder={category.name}
                       onChange={(e) => handleCategoryChange(e)}
                     />
                     <button
-                      className="btnstyle"
                       onClick={() => {
                         updateCategories();
                         setEditingCategory(null);
                       }}
                     >
-                      edit
+                      <VscEdit className="size-[1.5rem]" />
                     </button>
                   </>
                 ) : (
                   <>
-                    <h1>{category.name}</h1>
-                    <button
-                      className="btnstyle"
-                      onClick={() => {
-                        handleEditCategory(category.id);
-                        setEditingCategory(category.id);
-                      }}
-                    >
-                      edit
-                    </button>
-                    <DeleteCategory
-                      categoryId={category.id}
-                      deletingCategory={deletingCategory}
-                    />
+                    <h1 className="text-[2rem] font-extrabold">
+                      {category.name}
+                    </h1>
+                    <div className="w-[20%] flex justify-between ">
+                      <button
+                        onClick={() => {
+                          handleEditCategory(category.id);
+                          setEditingCategory(category.id);
+                        }}
+                      >
+                        <VscEdit className="size-[1.5rem]" />
+                      </button>
+                      <DeleteCategory
+                        categoryId={category.id}
+                        deletingCategory={deletingCategory}
+                      />
+                    </div>
                   </>
                 )}
               </div>
@@ -79,7 +83,7 @@ const CategoryTaskDisplay = ({
                       <>
                         <div
                           key={task.id}
-                          className="  w-full flex flex-row gap-5"
+                          className="  w-full flex flex-row gap-5  justify-between"
                         >
                           {editingTask === task.id ||
                           selectedTask === task.id ? (
@@ -90,45 +94,46 @@ const CategoryTaskDisplay = ({
                                 onChange={(e) => handleTaskChange(e)}
                               />
                               <button
-                                className="btnstyle"
                                 onClick={() => {
                                   updateTasks();
                                   setEditingTask(null);
                                 }}
                               >
-                                Edit
+                                <VscEdit className="size-[1.5rem]" />
                               </button>
                             </>
                           ) : (
                             <>
                               {task.completed === true ? (
-                                <h1 className="line-through italic capitalize">
+                                <h1 className="line-through italic capitalize text-[1.3rem] ">
                                   {task.todo}
                                 </h1>
                               ) : (
-                                <h1 className="capitalize">{task.todo}</h1>
+                                <h1 className="capitalize font-bold text-[1.3rem]">
+                                  {task.todo}
+                                </h1>
                               )}
-
-                              <button
-                                className="btnstyle"
-                                onClick={() => {
-                                  handleEditTask(category.id, task.id);
-                                  setEditingTask(task.id);
-                                }}
-                              >
-                                Edit
-                              </button>
-                              <TaskCheckBox
-                                task={task}
-                                taskId={task.id}
-                                categoryId={category.id}
-                                handleCheckboxChange={handleCheckboxChange}
-                              />
-                              <DeleteTask
-                                taskId={task.id}
-                                categoryId={category.id}
-                                deletingTask={deletingTask}
-                              />
+                              <div className=" w-[30%] flex justify-between">
+                                <button
+                                  onClick={() => {
+                                    handleEditTask(category.id, task.id);
+                                    setEditingTask(task.id);
+                                  }}
+                                >
+                                  <VscEdit className="size-[1.5rem]" />
+                                </button>
+                                <TaskCheckBox
+                                  task={task}
+                                  taskId={task.id}
+                                  categoryId={category.id}
+                                  handleCheckboxChange={handleCheckboxChange}
+                                />
+                                <DeleteTask
+                                  taskId={task.id}
+                                  categoryId={category.id}
+                                  deletingTask={deletingTask}
+                                />
+                              </div>
                             </>
                           )}
                         </div>

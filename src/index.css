@@ -1,12 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  .reset{
-    box-sizing: border-box;
+  html{
+   box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Amatic SC';
   }
   .display {
     display: flex;
@@ -29,7 +31,7 @@
    @apply shadow-inner border outline-none rounded-md w-[100%] h-[4vh] p-1
   }
   .btnstyle{
-    @apply shadow-md border-2 rounded-md hover:shadow-inner hover:border-4
+    @apply shadow-md border-2 rounded-md hover:shadow-inner hover:border-4 bg-white
   }
 
   .custom-scrollbar::-webkit-scrollbar {
@@ -38,7 +40,7 @@
   }
   
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #4f4f4f; 
+    background-color: #d2dfd8; 
     border-radius: 2px; 
   }
   
@@ -46,6 +48,9 @@
     background-color: #ccc; 
     border-radius: 5px; 
   }
+
+ 
+
 
 
  
