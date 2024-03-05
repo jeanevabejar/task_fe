@@ -1,9 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 function App() {
-  const nav = useNavigate();
   const email = Cookies.get("current_user");
   const [username] = email.split("@");
 
@@ -14,12 +13,7 @@ function App() {
         <h1 className="capitalize text-7xl bg-bg5 bg-set h-[20vh] w-[40%] display">{username}</h1>
       </div>
 
-      <button
-        onClick={() => nav("dashboard")}
-        className=" w-[20%] h-[15vh] text-[2rem] bg-bg3 bg-set hover:italic"
-      >
-        Dashboard
-      </button>
+      <Link to="/dashboard" className="w-[20%] h-[15vh] text-[2rem] bg-bg3 bg-set hover:italic display">Dashboard</Link>
     </div>
   );
 }

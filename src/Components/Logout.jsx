@@ -17,9 +17,9 @@ const Logout = () => {
     <>
       <button
         onClick={handleLogout}
-        className="btnstyle w-[10vw] h-[5vh] font-extrabold text-[2rem] display"
+        className=" w-[10vw] h-[6vh]  text-[2.5rem] display truncate bg-bg8 bg-set hover:bg-bg2 bg-cover"
       >
-        logout
+        Logout
       </button>
     </>
   );

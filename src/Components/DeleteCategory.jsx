@@ -6,7 +6,7 @@ const DeleteCategory = ({categoryId, deletingCategory}) => {
     return (
         <>
           <button  onClick={()=> deletingCategory(categoryId)}>
-          <RiDeleteBin5Line className="size-[1.5rem]" />
+          <RiDeleteBin5Line className="size-[1.5rem] hover:bg-bg11 bg-set" />
           </button>
         </>
       );

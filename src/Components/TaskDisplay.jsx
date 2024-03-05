@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { getCategory } from "../Utils/Categoryservice";
 import { getTask } from "../Utils/Taskservice";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
+import DeleteTask from "./DeleteTask";
 
 const TaskDisplay = () => {
   const [taskData, setTaskData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
   const [dataFetched, setDataFetched] = useState(false);
   const nav = useNavigate();
+  const location = useLocation();
 
   const getCategorys = async () => {
     try {
@@ -80,7 +82,7 @@ const TaskDisplay = () => {
           </button>
         </div>
 
-        <div className=" h-[40vh] w-full gap-3 flex flex-col p-3 overflow-auto">
+        <div className=" h-[25vh] w-full gap-3 flex flex-col p-3 overflow-auto ">
           {sortedTasks ? (
             sortedTasks.map((task) => (
               <>
@@ -88,7 +90,9 @@ const TaskDisplay = () => {
                   className="w-full flex flex-row justify-between p-2  truncate flex-wrap"
                   key={task.id}
                 >
-                  <h1 className="text-[1.3rem] bg-bg1 bg-set">{task.todo}</h1>
+                  <h1 className="text-[1.3rem] bg-bg1 bg-set capitalize">
+                    {task.todo}
+                  </h1>
 
                   {task.completed === true ? (
                     <h1 className="text-[1.2rem] text-green-700">"done"</h1>
@@ -101,6 +105,30 @@ const TaskDisplay = () => {
           ) : (
             <span>No tasks created today</span>
           )}
+        </div>
+        <div className="h-[25vh] w-full ">
+          <div className="display flex-col p-4 gap-2 flex-wrap truncate ">
+            <h1 className="display flex-row gap-2 text-[1.2rem] bg-set  border-b-2 border-dashed border-green-600">
+              Completed Task
+              <div className="bg-bg7 bg-set h-4 w-4 "></div>
+            </h1>
+            {taskData ? (
+              taskData
+                .filter((task) => task.completed === true)
+                .map((task) => (
+                  <>
+                    <div className="w-full capitalize italic text-[1.3rem] ">
+                      <h1 className="bg-bg6 bg-set bg-cover w-fit gap-2 flex  flex-row">
+                        <div className="w-5 h-5 bg-bg11 bg-set "></div>
+                        {task.todo}
+                      </h1>
+                    </div>
+                  </>
+                ))
+            ) : (
+              <span>No tasks created today</span>
+            )}
+          </div>
         </div>
       </div>
     </>

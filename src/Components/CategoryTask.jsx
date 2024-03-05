@@ -7,8 +7,12 @@ import {
 } from "../Utils/Categoryservice";
 import { getTask, updateTask, deleteTask } from "../Utils/Taskservice";
 import CategoryTaskDisplay from "./CategoryTaskDisplay";
+import { useLocation } from "react-router-dom";
 
 const CategoryTask = () => {
+
+  const location = useLocation();
+  
   const [taskInput, setTaskInput] = useState({
     todo: "",
   });
@@ -183,11 +187,11 @@ const CategoryTask = () => {
   };
 
   useEffect(() => {
-    if (!dataFetched) {
+    if (!dataFetched ) {
       getTasks();
       getCategorys();
     }
-  }, [taskData, categoryData, dataFetched]);
+  }, [taskData, categoryData, dataFetched, ]);
 
   return (
     <>

@@ -1,30 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CreateCategories, CreateTask } from "../Components/Form";
 import CategoryTask from "../Components/CategoryTask";
 import TaskDisplay from "../Components/TaskDisplay";
-import { useLocation, useNavigate } from "react-router-dom";
-import Logout from "../Components/Logout";
-import Cookies from "js-cookie";
+import { useLocation } from "react-router-dom";
+import UserDisplay from "../Components/UserDisplay";
+
+
 
 const Dashboard = () => {
   const location = useLocation();
-  const email = Cookies.get("current_user");
-  const [username] = email.split("@");
 
 
   return (
-    <div className="resetsize display  ">
-      <div className=" border layersize flex justify-evenly items-center relative flex-row">
-      <div className="h-[90vh] w-[22%] display shadow-xl">
+    <div className="resetsize display bg-bg12 ">
+      <div className=" border layersize flex justify-evenly items-center relative flex-row bg-white bg-opacity-50 ">
+      <div className="h-[90vh] w-[22%] display shadow-xl bg-bg13">
         <TaskDisplay />
       </div>
       <div className="h-[89vh] w-[44%] display overflow-y-hidden custom-scrollbar ">
         <CategoryTask />
       </div>
-      <div className="h-[90vh] w-[22%] display flex-col justify-evenly flex-wrap text-ellipsis overflow-hidden  border-2 bg-white">
-        <h1 className="font-extrabold text-[5rem]">{username}</h1>
-        <Logout />
-        
+      <div className="h-[90vh] w-[22%] display flex-col justify-evenly flex-wrap text-ellipsis overflow-hidden  border-2 shadow-xl bg-white">
+        <UserDisplay/>
       </div>
       {location.pathname === "/dashboard/category" ? (
         <CreateCategories />

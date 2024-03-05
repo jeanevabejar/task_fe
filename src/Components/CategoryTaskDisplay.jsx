@@ -28,9 +28,9 @@ const CategoryTaskDisplay = ({
           categoryData.map((category, index) => (
             <div
               key={category.id}
-              className="display flex-col gap-4 border-2 min-w-[50%] min-h-[30vh] max-w-[50%] flex-wrap text-wrap  "
+              className="display flex-col gap-[0.5rem] border-2 min-w-[50%] min-h-[30vh] max-w-[50%] flex-wrap text-wrap bg-bg15 bg-set p-3 "
             >
-              <div className=" flex-row flex w-full min-h-[5vh] text-left p-4 border-dashed border-b-2 border-slate-950 gap-4 justify-between truncate ">
+              <div className=" flex-row flex w-full min-h-[5vh] text-left p-4 border-dashed border-b-2 border-black gap-4 justify-between truncate ">
                 {editingCategory === category.id &&
                 selectedCategory === category.id ? (
                   <>
@@ -59,7 +59,7 @@ const CategoryTaskDisplay = ({
                           setEditingCategory(category.id);
                         }}
                       >
-                        <VscEdit className="size-[1.5rem] " />
+                        <VscEdit className="size-[1.5rem] hover:bg-bg10 bg-set" />
                       </button>
                       <DeleteCategory
                         categoryId={category.id}
@@ -81,7 +81,7 @@ const CategoryTaskDisplay = ({
                       <>
                         <div
                           key={task.id}
-                          className="  w-full flex flex-row gap-5  justify-evenly"
+                          className="  w-full flex flex-row gap-5  justify-between"
                         >
                           {editingTask === task.id ||
                           selectedTask === task.id ? (
@@ -97,7 +97,7 @@ const CategoryTaskDisplay = ({
                                   setEditingTask(null);
                                 }}
                               >
-                                <VscEdit className="size-[1.5rem]" />
+                                <VscEdit className="size-[1.5rem] " />
                               </button>
                             </>
                           ) : (
@@ -129,7 +129,7 @@ const CategoryTaskDisplay = ({
                                     setEditingTask(task.id);
                                   }}
                                 >
-                                  <VscEdit className="size-[1.5rem]" />
+                                  <VscEdit className="size-[1.5rem] hover:bg-bg10 bg-set" />
                                 </button>
 
                                 <DeleteTask

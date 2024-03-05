@@ -25,33 +25,35 @@ export const CreateCategories = () => {
   };
 
   return (
-    <div className="display absolute flex-col p-2 w-[40%] h-[50vh] border-2  bg-white top-[15%] font-bold text-[1.5rem] bg-bg5 bg-cover bg-no-repeat bg-center">
-      <h2>Create Category</h2>
+    <div className="display absolute flex-col p-5 w-[35%] h-[50vh]  text-[1.5rem] justify-evenly bg-bg14 bg-set ">
+      <h2 className="text-[2rem] display  w-[50%] h-[10vh] bg-bg2 bg-set">
+        New Category</h2>
       {error && <p>Error: {error}</p>}
       <form
         onSubmit={handleCategorySubmit}
-        className=" display flex-col w-[70%] h-[20vh] gap-10"
+        className=" display flex-col w-full h-[20vh] gap-10 justify-start"
       >
         <input
           type="text"
           placeholder="Category Name"
           value={categoryName}
           onChange={(e) => handleCategoryNameChange(e)}
-          className="p-2 w-full h-[4vh] truncate border-2 rounded-md outline-none"
+          className="p-2 w-[60%] h-[5vh] truncate border-2 rounded-xl outline-none bg-transparent border-black placeholder:text-gray-500  placeholder:italic"
         />
-
-        <button
-          type="submit"
-          className="btnstyle w-[50%] h-[4vh] text-base truncate"
-        >
-          Add Category
-        </button>
-        <button
-          onClick={() => nav("/dashboard")}
-          className="btnstyle w-[50%] h-[4vh] text-base truncate"
-        >
-          Cancel
-        </button>
+        <div className="display flex-row gap-5 w-full">
+          <button
+            type="submit"
+            className=" w-[30%] h-[6vh] text-[1.5rem] truncate bg-bg4 bg-set hover:underline"
+          >
+            Add 
+          </button>
+          <button
+            onClick={() => nav("/dashboard")}
+            className=" w-[30%] h-[6vh] text-[1.5rem] truncate bg-bg4 bg-set hover:underline"
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
@@ -107,17 +109,17 @@ export const CreateTask = () => {
   };
 
   return (
-    <div className="display absolute flex-col p-2 w-[40%] h-[50vh] border-2  bg-white top-[15%]  ">
-      <h2>Create New Task</h2>
+    <div className="display absolute flex-col p-5 w-[40%] h-[60vh]   top-[15%] bg-bg14 bg-set ">
+      <h2 className=" w-[50%] h-[10vh] display text-[2rem] bg-bg4 bg-set"> New Task</h2>
 
       <form
         onSubmit={handleTaskSubmit}
-        className=" display flex-col w-[70%] h-[30vh] gap-4 "
+        className=" display flex-col w-full h-[30vh] gap-4 "
       >
         <select
           value={taskData.categoryId}
           onChange={handleCategorySelectChange}
-          className="w-[50%] h-[4vh] border-2 display"
+          className="w-[50%] h-[5vh] border-2 display text-[1.2rem] bg-yellow-200 border-black rounded-md"
         >
           <option value="">Select category</option>
           {/* Map over categories to create select options */}
@@ -135,18 +137,18 @@ export const CreateTask = () => {
           onChange={handleTaskInputChange}
           placeholder="Task Title"
           required
-          className="p-2 w-full h-[4vh] truncate border-2 rounded-md outline-none"
+          className="text-[1.5rem] p-2 w-[50%] h-[5vh] truncate border-2 rounded-md outline-none bg-transparent border-black placeholder:italic"
         />
 
         <button
           type="submit"
-          className="btnstyle w-[50%] h-[4vh] text-base truncate"
+          className=" w-[30%] h-[4vh] text-[1.2rem] font-bold truncate bg-bg1 bg-set hover:bg-bg3 "
         >
           Create Task
         </button>
         <button
           onClick={() => nav("/dashboard")}
-          className="btnstyle w-[50%] h-[4vh] text-base truncate"
+          className="w-[30%] h-[4vh] text-[1.2rem] font-bold truncate bg-bg1 bg-set hover:bg-bg3 bg-set"
         >
           Cancel
         </button>
