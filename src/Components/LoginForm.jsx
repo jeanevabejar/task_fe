@@ -13,9 +13,7 @@ const LoginForm = () => {
     try {
       const response = await login(email, password);
       console.log("Registered user:", response.data);
-      console.log("header user:", response.header);
-      // Redirect or perform other actions after successful login
-      nav("/"); // Example: Redirect to dashboard page
+      nav("/"); 
     } catch (error) {
       setError(error.message || "An error occurred while signing in.");
     }

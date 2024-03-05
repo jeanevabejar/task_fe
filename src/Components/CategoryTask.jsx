@@ -7,12 +7,11 @@ import {
 } from "../Utils/Categoryservice";
 import { getTask, updateTask, deleteTask } from "../Utils/Taskservice";
 import CategoryTaskDisplay from "./CategoryTaskDisplay";
-import { useLocation } from "react-router-dom";
+
 
 const CategoryTask = () => {
 
-  const location = useLocation();
-  
+
   const [taskInput, setTaskInput] = useState({
     todo: "",
   });
@@ -88,14 +87,23 @@ const CategoryTask = () => {
   };
 
   const handleCheckboxChange = (taskId, categoryId) => {
-    setTaskCompleted({
-      completed: true,
+    if(taskCompleted.completed === false){
+      setTaskCompleted({
+      completed: true 
     });
+    }else if(taskCompleted.completed === true){
+      setTaskCompleted({
+        completed: false 
+      });
+    }
+    
+
 
     updateTaskStatus(taskId, categoryId);
   };
 
   const updateTaskStatus = async (taskId, categoryId) => {
+    console.log(taskCompleted)
     try {
       const response = await updateTask(categoryId, taskCompleted, taskId);
       const updatedTaskData = taskData.map((task) => {
@@ -187,11 +195,11 @@ const CategoryTask = () => {
   };
 
   useEffect(() => {
-    if (!dataFetched ) {
+    if (!dataFetched) {
       getTasks();
       getCategorys();
     }
-  }, [taskData, categoryData, dataFetched, ]);
+  }, [taskData, categoryData, dataFetched]);
 
   return (
     <>

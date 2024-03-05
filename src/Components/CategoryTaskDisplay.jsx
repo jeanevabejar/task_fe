@@ -21,14 +21,15 @@ const CategoryTaskDisplay = ({
 }) => {
   const [editingCategory, setEditingCategory] = useState(null); 
   const [editingTask, setEditingTask] = useState(null); 
+
   return (
     <>
       <div className="display flex-col flex-wrap w-full h-[90vh] gap-6  p-5 custom-scrollbar ">
         {categoryData ? (
-          categoryData.map((category, index) => (
+          categoryData.sort((a, b) => b.id - a.id).map((category, index) => (
             <div
               key={category.id}
-              className="display flex-col gap-[0.5rem] border-2 min-w-[50%] min-h-[30vh] max-w-[50%] flex-wrap text-wrap bg-bg15 bg-set p-3 "
+              className="display flex-col gap-[0.5rem]  min-w-[50%] min-h-[40vh] max-w-[50%] max-h-[40vh] text-wrap bg-bg15 bg-set p-5 custom-scrollbar "
             >
               <div className=" flex-row flex w-full min-h-[5vh] text-left p-4 border-dashed border-b-2 border-black gap-4 justify-between truncate ">
                 {editingCategory === category.id &&
@@ -72,7 +73,7 @@ const CategoryTaskDisplay = ({
 
               <div
                 key={index}
-                className="flex flex-col w-full p-4 min-h-[25vh] gap-6 overflow-auto "
+                className="flex flex-col w-full p-4 min-h-[20vh] gap-6 overflow-auto custom-scrollbar "
               >
                 {taskData ? (
                   taskData
@@ -81,7 +82,7 @@ const CategoryTaskDisplay = ({
                       <>
                         <div
                           key={task.id}
-                          className="  w-full flex flex-row gap-5  justify-between"
+                          className="  w-full flex flex-row  gap-5  justify-between "
                         >
                           {editingTask === task.id ||
                           selectedTask === task.id ? (
@@ -102,7 +103,7 @@ const CategoryTaskDisplay = ({
                             </>
                           ) : (
                             <>
-                              <div className="display flex-row truncate gap-1 ">
+                              <div className="display flex-row truncate gap-1  ">
                                 <TaskCheckBox
                                   task={task}
                                   taskId={task.id}

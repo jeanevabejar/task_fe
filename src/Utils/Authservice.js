@@ -1,36 +1,38 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
+
 const API_URL = "http://127.0.0.1:3000";
 
 export const login = async (email, password) => {
-    try {
-      const response = await axios.post(
-        `${API_URL}/users/sign_in`,
-        {
-          user: {
-            email,
-            password,
-          },
+  try {
+    const response = await axios.post(
+      `${API_URL}/users/sign_in`,
+      {
+        user: {
+          email,
+          password,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-  
-      const authorizationHeader = response.headers["authorization"];
-      const [tokenType, token] = authorizationHeader.split(' ');
-      const user = response.data.status.data.email;
-      Cookies.set("current_user", user);
-      Cookies.set("accessToken", token);
-  
-      return response;
-    } catch (error) {
-      throw error.message;
-    }
-  };
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const authorizationHeader = response.headers["authorization"];
+
+    const [tokenType, token] = authorizationHeader.split(" ");
+    Cookies.set("accessToken", token);
+
+    const user = response.data.status.data.email;
+    Cookies.set("current_user", user);
+
+    return response;
+  } catch (error) {
+    throw error.message;
+  }
+};
 
 export const register = async (email, password, passwordConfirmation) => {
   try {
@@ -64,30 +66,26 @@ export const logout = async () => {
       throw new Error("Access token not found");
     }
 
-    const response = await axios.delete(
-      `${API_URL}/users/sign_out`,
-      {
-        headers: {
-          Authorization:  `Bearer ${accessToken}`
-        },
-      }
-    );
+    const response = await axios.delete(`${API_URL}/users/sign_out`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
 
     Cookies.remove("accessToken");
     Cookies.remove("current_user");
-    return response
+    return response;
   } catch (error) {
     throw error.message;
   }
 };
 
 export const isAuthenticated = () => {
+  const accessToken = Cookies.get("accessToken");
 
-    const accessToken = Cookies.get('accessToken');
-
-    if (accessToken){
-      return true
-    } else {
-      return false
-    }
-  };
+  if (accessToken) {
+    return true;
+  } else {
+    return false;
+  }
+};

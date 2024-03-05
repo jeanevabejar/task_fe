@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createTask } from "../Utils/Taskservice";
 import { createCategory, getCategory } from "../Utils/Categoryservice";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export const CreateCategories = () => {
   const [categoryName, setCategoryName] = useState("");
@@ -17,8 +18,7 @@ export const CreateCategories = () => {
     try {
       const response = await createCategory(categoryName);
       setCategoryName("");
-      console.log("Category created", response);
-      console.log(categoryName);
+      Cookies.set("create", true);
     } catch (error) {
       setError(error.message);
     }
@@ -98,11 +98,10 @@ export const CreateTask = () => {
   const handleTaskSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await createTask(categoryId, taskData); // You need to provide categoryId here
-      console.log(taskData);
-      console.log(categoryId);
+      const response = await createTask(categoryId, taskData); 
       setTaskData({ todo: "" });
-      console.log("Task created", response);
+      Cookies.set("create", true);
+     
     } catch (error) {
       setError(error.message);
     }

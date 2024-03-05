@@ -5,6 +5,7 @@ const token = Cookies.get("accessToken");
 const API_URL = "http://127.0.0.1:3000";
 
 export const createCategory = async (categoryName) => {
+  const token = Cookies.get("accessToken"); 
   try {
     const response = await axios.post(`${API_URL}/categories`, {
       category: { name: categoryName },
@@ -20,7 +21,9 @@ export const createCategory = async (categoryName) => {
 };
 
 export const getCategory = async () => {
-    try {
+  const token = Cookies.get("accessToken"); 
+  if(token){
+     try {
       const response = await axios.get(`${API_URL}/categories`, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -30,9 +33,12 @@ export const getCategory = async () => {
     } catch (error) {
       throw error;
     }
+  }
+   
   };
 
 export const showCategory = async (categoryId) => {
+  const token = Cookies.get("accessToken"); 
   try {   
     const response = await axios.get(`${API_URL}/categories/${categoryId}`, {
       headers: {
@@ -46,6 +52,7 @@ export const showCategory = async (categoryId) => {
 };
 
 export const updateCategory = async (categoryId, categoryData) => {
+  const token = Cookies.get("accessToken"); 
   try { 
     const response = await axios.put(`${API_URL}/categories/${categoryId}`, {
       category: categoryData,
@@ -61,6 +68,7 @@ export const updateCategory = async (categoryId, categoryData) => {
 };
 
 export const deleteCategory = async (categoryId) => {
+  const token = Cookies.get("accessToken"); 
   try {
     const response = await axios.delete(`${API_URL}/categories/${categoryId}`, {
       headers: {

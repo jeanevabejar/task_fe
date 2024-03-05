@@ -3,7 +3,8 @@ import { getCategory } from "../Utils/Categoryservice";
 import { getTask } from "../Utils/Taskservice";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
-import DeleteTask from "./DeleteTask";
+
+
 
 const TaskDisplay = () => {
   const [taskData, setTaskData] = useState([]);
@@ -53,10 +54,12 @@ const TaskDisplay = () => {
   });
 
   useEffect(() => {
-    if (!dataFetched) {
+    if (!dataFetched ) {
       getTasks();
       getCategorys();
+      
     }
+
   }, [taskData, categoryData, dataFetched]);
 
   return (
@@ -82,12 +85,12 @@ const TaskDisplay = () => {
           </button>
         </div>
 
-        <div className=" h-[25vh] w-full gap-3 flex flex-col p-3 overflow-auto ">
+        <div className=" h-[25vh] w-full  flex flex-col overflow-auto  custom-scrollbar">
           {sortedTasks ? (
             sortedTasks.map((task) => (
               <>
                 <div
-                  className="w-full flex flex-row justify-between p-2  truncate flex-wrap"
+                  className="w-full flex flex-row justify-between p-2 flex-wrap "
                   key={task.id}
                 >
                   <h1 className="text-[1.3rem] bg-bg1 bg-set capitalize">
@@ -106,7 +109,7 @@ const TaskDisplay = () => {
             <span>No tasks created today</span>
           )}
         </div>
-        <div className="h-[25vh] w-full ">
+        <div className="h-[25vh] w-full overflow-auto custom-scrollbar">
           <div className="display flex-col p-4 gap-2 flex-wrap truncate ">
             <h1 className="display flex-row gap-2 text-[1.2rem] bg-set  border-b-2 border-dashed border-green-600">
               Completed Task
