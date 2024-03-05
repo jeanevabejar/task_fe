@@ -15,7 +15,7 @@ const Dashboard = () => {
   return (
     <div className="resetsize display  ">
       <div className=" border layersize flex justify-evenly items-center relative flex-row">
-      <div className="h-[90vh] w-[22%] display style ">
+      <div className="h-[90vh] w-[22%] display shadow-xl">
         <TaskDisplay />
       </div>
       <div className="h-[89vh] w-[44%] display overflow-y-hidden custom-scrollbar ">

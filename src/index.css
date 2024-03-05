@@ -35,9 +35,11 @@
    @apply shadow-inner border outline-none rounded-md w-[100%] h-[4vh] p-1 font-open-sans
   }
   .btnstyle{
-    @apply shadow-md border-2 rounded-md hover:shadow-inner hover:border-4 bg-white
+    @apply shadow-md border-2 rounded-md bg-white
   }
-
+  .bg-set{
+    @apply bg-contain bg-no-repeat bg-center
+  }
   .custom-scrollbar::-webkit-scrollbar {
     width: 5px;
     height: 1vh; 

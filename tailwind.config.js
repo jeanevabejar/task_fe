@@ -7,11 +7,13 @@ export default {
       "open-sans": ["Open Sans", "sans-serif"],
     },
     backgroundImage: (theme) => ({
-      bg1: "url(https://i.pinimg.com/564x/cd/b9/e7/cdb9e7d41006d3f862c1c31996eec075.jpg)",
-      bg2: "url(https://i.pinimg.com/564x/8c/a5/fe/8ca5fe861eaa707608780aee8322c5c5.jpg)",
-      bg3: "url(https://i.pinimg.com/564x/01/ed/ea/01edea8bdba01504a40f5b3042ce9ac6.jpg)",
-      bg4: "url(https://i.pinimg.com/564x/90/d1/b9/90d1b95b88e29cea8450d24db6e77ef9.jpg)",
-      bg5: "url(https://i.pinimg.com/564x/76/4c/fa/764cfae6ef4eb1fbe5b1ced73bdd2894.jpg)",
+      bg1: "url(https://static.vecteezy.com/system/resources/previews/023/530/252/original/hand-drawn-yellow-highlight-marker-stripes-on-transparent-background-png.png)",
+      bg2: "url(https://static.vecteezy.com/system/resources/thumbnails/021/998/567/small/hand-drawn-circle-highlighting-free-png.png)",
+      bg3: "url(https://static.vecteezy.com/system/resources/previews/023/551/179/non_2x/hand-drawn-blue-highlight-marker-stripes-on-transparent-background-png.png)",
+      bg4: "url(https://www.pngkit.com/png/full/111-1110988_image-result-for-hand-drawing-a-circle-hand.png)",
+      bg5: "url(https://static.vecteezy.com/system/resources/previews/009/392/131/original/speech-bubble-icon-sign-symbol-design-free-png.png)",
+      bg6: "url(https://static.vecteezy.com/system/resources/previews/023/551/111/original/hand-drawn-green-highlight-marker-stripes-on-transparent-background-png.png)",
+      bg7: "url(https://static.vecteezy.com/system/resources/previews/022/056/326/non_2x/grunge-style-check-mark-free-png.png)"
     }),
   },
   plugins: [],

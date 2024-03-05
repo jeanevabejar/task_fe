@@ -4,7 +4,7 @@ const TaskCheckBox = ({ task, taskId, categoryId, handleCheckboxChange }) => {
   return (
     <>
       <input
-        className="w-[1.5rem] h-[1.5rem] appearance-none border-2 border-black checked:bg-green-100" 
+        className="w-[1.5rem] h-[1.5rem] appearance-none border-2 border-black checked:bg-bg7 bg-set rounded-sm" 
         type="checkbox"
         checked={task.completed === true}
         onChange={() => handleCheckboxChange(taskId, categoryId)}

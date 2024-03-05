@@ -19,8 +19,8 @@ const CategoryTaskDisplay = ({
   deletingTask,
   deletingCategory,
 }) => {
-  const [editingCategory, setEditingCategory] = useState(null); // State to manage editing category
-  const [editingTask, setEditingTask] = useState(null); // State to manage editing task
+  const [editingCategory, setEditingCategory] = useState(null); 
+  const [editingTask, setEditingTask] = useState(null); 
   return (
     <>
       <div className="display flex-col flex-wrap w-full h-[90vh] gap-6  p-5 custom-scrollbar ">
@@ -28,14 +28,14 @@ const CategoryTaskDisplay = ({
           categoryData.map((category, index) => (
             <div
               key={category.id}
-              className="display flex-col gap-4 border-2 min-w-[50%] min-h-[30vh] max-w-[50%] flex-wrap text-wrap bg-white bg-center bg-cover bg-no-repeat "
+              className="display flex-col gap-4 border-2 min-w-[50%] min-h-[30vh] max-w-[50%] flex-wrap text-wrap  "
             >
-              <div className=" flex-row flex w-full min-h-[5vh] text-left p-4 border-dashed border-b-2 border-slate-950 gap-4 justify-between">
+              <div className=" flex-row flex w-full min-h-[5vh] text-left p-4 border-dashed border-b-2 border-slate-950 gap-4 justify-between truncate ">
                 {editingCategory === category.id &&
                 selectedCategory === category.id ? (
                   <>
                     <input
-                      className="w-[60%] h-[5vh] p-2 text-[1.5rem]  font-semibold bg-transparent"
+                      className="w-[60%] h-[5vh] p-2 text-[1.5rem] bg-transparent"
                       type="text"
                       placeholder={category.name}
                       onChange={(e) => handleCategoryChange(e)}
@@ -51,9 +51,7 @@ const CategoryTaskDisplay = ({
                   </>
                 ) : (
                   <>
-                    <h1 className="text-[2rem] font-extrabold">
-                      {category.name}
-                    </h1>
+                    <h1 className="text-[2rem]">{category.name}</h1>
                     <div className="w-[20%] flex justify-between ">
                       <button
                         onClick={() => {
@@ -61,7 +59,7 @@ const CategoryTaskDisplay = ({
                           setEditingCategory(category.id);
                         }}
                       >
-                        <VscEdit className="size-[1.5rem]" />
+                        <VscEdit className="size-[1.5rem] " />
                       </button>
                       <DeleteCategory
                         categoryId={category.id}
@@ -83,7 +81,7 @@ const CategoryTaskDisplay = ({
                       <>
                         <div
                           key={task.id}
-                          className="  w-full flex flex-row gap-5  justify-between"
+                          className="  w-full flex flex-row gap-5  justify-evenly"
                         >
                           {editingTask === task.id ||
                           selectedTask === task.id ? (
@@ -104,24 +102,27 @@ const CategoryTaskDisplay = ({
                             </>
                           ) : (
                             <>
+                              <div className="display flex-row truncate gap-1 ">
                                 <TaskCheckBox
                                   task={task}
                                   taskId={task.id}
                                   categoryId={category.id}
                                   handleCheckboxChange={handleCheckboxChange}
                                 />
-                              {task.completed === true ? (
-                                <>
-                                  <h1 className="line-through italic capitalize text-[1.3rem] ">
+                                {task.completed === true ? (
+                                  <>
+                                    <h1 className="line-through italic capitalize text-[1.2rem] ">
+                                      {task.todo}
+                                    </h1>
+                                  </>
+                                ) : (
+                                  <h1 className="capitalize  text-[1.2rem]">
                                     {task.todo}
                                   </h1>
-                                </>
-                              ) : (
-                                <h1 className="capitalize font-bold text-[1.3rem]">
-                                  {task.todo}
-                                </h1>
-                              )}
-                              <div className=" w-[30%] flex justify-between">
+                                )}
+                              </div>
+
+                              <div className=" w-[20%] flex justify-between">
                                 <button
                                   onClick={() => {
                                     handleEditTask(category.id, task.id);

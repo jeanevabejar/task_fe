@@ -59,37 +59,42 @@ const TaskDisplay = () => {
 
   return (
     <>
-      <div className=" w-full h-[90vh] display flex-col gap-4 rounded-xl border">
-        <h1 className="font-bold w-full text-center text-[8vh] h-[20vh] display ">
+      <div className=" w-full h-[90vh] display flex-col gap-7 rounded-xl border ">
+        <h1 className="w-full text-center text-[2.5rem] h-[20vh] display bg-bg4 bg-set ">
           Today's List
         </h1>
-        <div className="w-full flex justify-evenly">
+        <div className="w-full flex justify-evenly flex-wrap truncate">
           <button
             onClick={() => nav("category")}
-            className="btnstyle  w-[30%] h-[5vh] font-extrabold text-[1.5rem] display"
+            className=" bg-bg2  bg-set  w-[50%] h-[6vh]  text-[1.2rem] display truncate hover:bg-bg4 hover:text-red-500"
           >
-             <IoMdAdd />category
+            <IoMdAdd />
+            category
           </button>
           <button
             onClick={() => nav("task")}
-            className="btnstyle w-[30%] h-[5vh] font-extrabold text-[1.5rem] display "
+            className="bg-bg2  bg-set  w-[50%] h-[6vh]  text-[1.2rem] display truncate hover:bg-bg4 hover:text-red-500"
           >
-           <IoMdAdd />task
+            <IoMdAdd />
+            task
           </button>
         </div>
 
-        <div className=" h-[50vh] w-full gap-3 flex flex-col p-3">
+        <div className=" h-[40vh] w-full gap-3 flex flex-col p-3 overflow-auto">
           {sortedTasks ? (
             sortedTasks.map((task) => (
               <>
                 <div
-                  className="border-2 w-full flex flex-row justify-between p-2"
+                  className="w-full flex flex-row justify-between p-2  truncate flex-wrap"
                   key={task.id}
                 >
-                  <h1 className="font-bold text-[1.3rem] ">{task.todo}</h1>
-                  <h1 className="text-[1.2rem]">
-                    {task.completed === true ? "done" : "to-do"}
-                  </h1>
+                  <h1 className="text-[1.3rem] bg-bg1 bg-set">{task.todo}</h1>
+
+                  {task.completed === true ? (
+                    <h1 className="text-[1.2rem] text-green-700">"done"</h1>
+                  ) : (
+                    <h1 className="text-[1.2rem] bg-bg4 bg-set">to-do</h1>
+                  )}
                 </div>
               </>
             ))

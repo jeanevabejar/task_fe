@@ -24,9 +24,9 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="flex flex-col text-center gap-8">
-      <h1>Signup</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 display w-[100%] h-[30vh]">
+    <div className=" display flex-col text-center w-[50%] h-[70vh]">
+      <h1 className="text-[2rem] display bg-bg4 h-[9vh] bg-set bg-no-repeat bg-center w-full ">Signup</h1>
+      <form onSubmit={handleSubmit} className="flex-col gap-4 display w-[100%] h-[30vh]">
         <input
           type="email"
           placeholder="Email"
@@ -48,9 +48,9 @@ const RegisterForm = () => {
           onChange={(e) => setPasswordConfirmation(e.target.value)}
           className="authinput"
         />
-        <button type="submit" className="btnstyle  w-[70%] h-[4vh]">Signup</button>
+        <button type="submit" className="btnstyle  w-[70%] h-[5vh] hover:bg-bg2 bg-set hover:border-none hover:shadow-none">Signup</button>
       </form>
-      <Link to="/signin">Already have an account? Sign in</Link>
+      <Link to="/signin" className="hover:italic hover:underline hover:text-green-500">Already have an account? Sign in</Link>
       {error && <p>{error}</p>}
     </div>
   );
