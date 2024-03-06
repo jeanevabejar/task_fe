@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 
-const API_URL = "https://task-pocq8uba3-jeanbejars-projects.vercel.app";
+const API_URL = "https://task-fe-seven.vercel.app";
 
 export const login = async (email, password) => {
   try {
