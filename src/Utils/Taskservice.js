@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import { useEffect } from "react";
 
 const token = Cookies.get("accessToken"); 
-const API_URL = "http://127.0.0.1:3000";
+const API_URL = "https://task-pocq8uba3-jeanbejars-projects.vercel.app";
 
 export const createTask = async (categoryId, TaskData) => {
   const token = Cookies.get("accessToken"); 
