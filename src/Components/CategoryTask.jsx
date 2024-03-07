@@ -7,6 +7,7 @@ import {
 } from "../Utils/Categoryservice";
 import { getTask, updateTask, deleteTask } from "../Utils/Taskservice";
 import CategoryTaskDisplay from "./CategoryTaskDisplay";
+import Cookies from "js-cookie";
 
 
 const CategoryTask = () => {
@@ -179,6 +180,7 @@ const CategoryTask = () => {
       const response = await deleteTask(categoryId, taskId);
       console.log(response);
       setDataFetched(false);
+      Cookies.set("create", true);
     } catch (error) {
       console.log(error);
     }
@@ -194,12 +196,19 @@ const CategoryTask = () => {
     }
   };
 
+  const update = Cookies.get("create")
+
   useEffect(() => {
-    if (!dataFetched) {
+    if (!dataFetched || update === "true" ) {
       getTasks();
       getCategorys();
+      setInterval(()=>{
+        Cookies.set("create", false)
+      }, 5000)
+      
     }
-  }, [taskData, categoryData, dataFetched]);
+
+  }, [taskData, categoryData, dataFetched, update]);
 
   return (
     <>

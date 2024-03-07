@@ -29,7 +29,7 @@ const CategoryTaskDisplay = ({
           categoryData.sort((a, b) => b.id - a.id).map((category, index) => (
             <div
               key={category.id}
-              className="display flex-col gap-[0.5rem]  min-w-[50%] min-h-[40vh] max-w-[50%] max-h-[40vh] text-wrap bg-bg15 bg-set p-5 custom-scrollbar "
+              className="display flex-col gap-[0.5rem]  min-w-[50%] min-h-[40vh] max-w-[50%] max-h-[40vh] text-wrap bg-bg15 bg-set p-5 custom-scrollbar"
             >
               <div className=" flex-row flex w-full min-h-[5vh] text-left p-4 border-dashed border-b-2 border-black gap-4 justify-between truncate ">
                 {editingCategory === category.id &&
@@ -112,12 +112,12 @@ const CategoryTaskDisplay = ({
                                 />
                                 {task.completed === true ? (
                                   <>
-                                    <h1 className="line-through italic capitalize text-[1.2rem] ">
+                                    <h1 className="line-through italic capitalize text-[1.2rem] truncate ">
                                       {task.todo}
                                     </h1>
                                   </>
                                 ) : (
-                                  <h1 className="capitalize  text-[1.2rem]">
+                                  <h1 className="capitalize  text-[1.2rem] truncate">
                                     {task.todo}
                                   </h1>
                                 )}

@@ -19,6 +19,7 @@ export const CreateCategories = () => {
       const response = await createCategory(categoryName);
       setCategoryName("");
       Cookies.set("create", true);
+      nav("/dashboard")
     } catch (error) {
       setError(error.message);
     }
@@ -30,7 +31,7 @@ export const CreateCategories = () => {
         New Category</h2>
       {error && <p>Error: {error}</p>}
       <form
-        onSubmit={handleCategorySubmit}
+        onSubmit={(e)=>handleCategorySubmit(e)}
         className=" display flex-col w-full h-[20vh] gap-10 justify-start"
       >
         <input
@@ -101,7 +102,7 @@ export const CreateTask = () => {
       const response = await createTask(categoryId, taskData); 
       setTaskData({ todo: "" });
       Cookies.set("create", true);
-     
+     nav("/dashboard")
     } catch (error) {
       setError(error.message);
     }
@@ -112,7 +113,7 @@ export const CreateTask = () => {
       <h2 className=" w-[50%] h-[10vh] display text-[2rem] bg-bg4 bg-set"> New Task</h2>
 
       <form
-        onSubmit={handleTaskSubmit}
+        onSubmit={(e)=>handleTaskSubmit(e)}
         className=" display flex-col w-full h-[30vh] gap-4 "
       >
         <select

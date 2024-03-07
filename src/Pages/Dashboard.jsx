@@ -6,8 +6,10 @@ import UserDisplay from "../Components/UserDisplay";
 import { useLocation } from "react-router-dom";
 
 const Dashboard = () => {
-
+  
   const location = useLocation();
+
+  
   return (
     <div className="resetsize display bg-bg12 ">
       <div className=" border layersize flex justify-evenly items-center relative flex-row bg-white bg-opacity-50 flex-wrap ">

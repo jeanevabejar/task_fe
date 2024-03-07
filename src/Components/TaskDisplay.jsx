@@ -3,6 +3,7 @@ import { getCategory } from "../Utils/Categoryservice";
 import { getTask } from "../Utils/Taskservice";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
+import Cookies from "js-cookie";
 
 
 
@@ -53,14 +54,19 @@ const TaskDisplay = () => {
     return dateB - dateA;
   });
 
+  const update = Cookies.get("create")
+
   useEffect(() => {
-    if (!dataFetched ) {
+    if (!dataFetched || update === "true" ) {
       getTasks();
       getCategorys();
+      setInterval(()=>{
+        Cookies.set("create", false)
+      }, 5000)
       
     }
 
-  }, [taskData, categoryData, dataFetched]);
+  }, [taskData, categoryData, dataFetched, update]);
 
   return (
     <>
