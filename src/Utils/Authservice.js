@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 
-const API_URL = "http://127.0.0.1:3000";
+const API_URL = "https://task-be-shkf.onrender.com";
 
 export const login = async (email, password) => {
   try {
