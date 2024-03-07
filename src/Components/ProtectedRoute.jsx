@@ -8,9 +8,7 @@ const ProtectedRoute = () => {
   const location = useLocation();
 
   if (isLoggedIn === false) {
-    // Redirect to the signin page
     return redirect("/signin");
-    // Return null or any loading indicator if needed
   }
 
   if (isLoggedIn && location.pathname === "/signin" || location.pathname === "/signup" ) {

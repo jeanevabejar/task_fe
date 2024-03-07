@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 
-const token = Cookies.get("accessToken"); 
+
 const API_URL = "https://task-be-shkf.onrender.com";
 
 export const createTask = async (categoryId, TaskData) => {
