@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const token = Cookies.get("accessToken"); 
-const API_URL = "https://task-7m2us0r1b-jeanbejars-projects.vercel.app";
+const API_URL = "https://task-fe-seven.vercel.app";
 
 export const createCategory = async (categoryName) => {
   const token = Cookies.get("accessToken"); 
