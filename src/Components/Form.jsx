@@ -39,7 +39,7 @@ export const CreateCategories = () => {
           placeholder="Category Name"
           value={categoryName}
           onChange={(e) => handleCategoryNameChange(e)}
-          className="p-2 w-[60%] h-[5vh] truncate border-2 rounded-xl outline-none bg-transparent border-black placeholder:text-gray-500  placeholder:italic"
+          className="p-2 w-[50%] h-[5vh] truncate border-2 rounded-xl outline-none bg-transparent border-black placeholder:text-gray-500  placeholder:italic"
         />
         <div className="display flex-row gap-5 w-full">
           <button
