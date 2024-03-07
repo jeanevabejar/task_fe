@@ -26,7 +26,7 @@ export const CreateCategories = () => {
   };
 
   return (
-    <div className="display absolute flex-col p-5 w-[35%] h-[50vh]  text-[1.5rem] justify-evenly bg-bg14 bg-set ">
+    <div className="display absolute flex-col p-5 w-[40%] h-[50vh]  text-[1.5rem] justify-evenly bg-bg14 bg-set ">
       <h2 className="text-[2rem] display  w-[50%] h-[10vh] bg-bg2 bg-set">
         New Category</h2>
       {error && <p>Error: {error}</p>}
