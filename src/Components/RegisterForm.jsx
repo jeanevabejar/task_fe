@@ -7,15 +7,12 @@ const RegisterForm = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [error, setError] = useState(null);
-  const nav = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await register(email, password, passwordConfirmation);
       console.log("Registered user:", response.data);
-      console.log("header user:", response.header['authorization']);
-      nav("/signin");
     } catch (error) {
       setError(error.message || "An error occurred while signing up.");
     }
