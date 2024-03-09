@@ -15,7 +15,7 @@ const RegisterForm = () => {
       const response = await register(email, password, passwordConfirmation);
       console.log("Registered user:", response.data);
       console.log("header user:", response.header['authorization']);
-      nav("signin");
+      nav("/signin");
     } catch (error) {
       setError(error.message || "An error occurred while signing up.");
     }
