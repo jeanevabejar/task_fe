@@ -78,7 +78,7 @@ export const CreateTask = () => {
 
   const handleCategorySelectChange = (event) => {
     setCategoryId(event.target.value);
-    console.log(categoryId);
+    // console.log(categoryId);
   };
 
   const handleCategorySelect = async () => {

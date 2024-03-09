@@ -8,7 +8,7 @@ const Logout = () => {
     try {
       const response = await logout();
       nav("/signin");
-      console.log("Is logout:", response); // Log the value
+      // console.log("Is logout:", response); // Log the value
     } catch (error) {
       console.log(error.message);
     }

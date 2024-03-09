@@ -36,7 +36,7 @@ const CategoryTask = () => {
       const ids = response.map((item) => item.id);
       showCategories(ids);
       getTasks(ids);
-      console.log("get", response);
+      // console.log("get", response);
       setDataFetched(true);
     } catch (error) {
       console.log(error.message);
@@ -104,7 +104,7 @@ const CategoryTask = () => {
   };
 
   const updateTaskStatus = async (taskId, categoryId) => {
-    console.log(taskCompleted)
+    // console.log(taskCompleted)
     try {
       const response = await updateTask(categoryId, taskCompleted, taskId);
       const updatedTaskData = taskData.map((task) => {
@@ -127,7 +127,7 @@ const CategoryTask = () => {
           taskInput,
           selectedTask
         );
-        console.log("updatetask", response);
+        // console.log("updatetask", response);
         const updatedTaskData = taskData.map((task) => {
           if (task.id === selectedTask) {
             return response;
@@ -157,7 +157,7 @@ const CategoryTask = () => {
     try {
       if (categoryInput.name.trim() !== "") {
         const response = await updateCategory(selectedCategory, categoryInput);
-        console.log(response);
+        // console.log(response);
         const updatedCategoryData = categoryData.map((category) => {
           if (category.id === selectedCategory) {
             return response; // Assuming response contains the updated category object
@@ -178,7 +178,7 @@ const CategoryTask = () => {
   const deletingTask = async (categoryId, taskId) => {
     try {
       const response = await deleteTask(categoryId, taskId);
-      console.log(response);
+      // console.log(response);
       setDataFetched(false);
       Cookies.set("create", true);
     } catch (error) {
@@ -190,7 +190,7 @@ const CategoryTask = () => {
     try {
       const response = await deleteCategory(categoryId);
       setDataFetched(false);
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.log(error);
     }
